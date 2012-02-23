@@ -1,9 +1,11 @@
 from distutils.core import setup, Extension
+from Cython.Distutils import build_ext
 
-module1 = Extension('py_fm',
-                    sources = ['vector.c'])
 
 setup (name = 'PythonFourierMotzkin',
        version = '0.1',
        description = 'FM elimination wrapper',
-       ext_modules = [module1])
+       cmdclass = {'build_ext':build_ext},
+       ext_modules = [Extension("py_fm", ["py_fm.pyx"],
+                        libraries=["fm"])]
+       )
