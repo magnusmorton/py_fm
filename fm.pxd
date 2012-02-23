@@ -1,9 +1,5 @@
 # cython: language_level=3
 
-cimport libc
-cimport stdio
-cimport stdlib
-
 cdef extern from '<fm/common.h>':
     ctypedef long int z_type_t
 

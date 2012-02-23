@@ -1,7 +1,4 @@
 # cython: language_level=3
-
-cimport libc
-cimport stdio
 cimport fm
 
 cdef class System:
