@@ -9,10 +9,7 @@ cdef class System:
     def __cinit__(self, int numrows, int numcols):
         _system = fm.fm_system_alloc(numrows, numcols)
           
-
 cpdef System create_system(intlist):
-    cdef char* a = "hello"
-    stdio.printf(a)
     cdef int cols, rows
     cols = len(intlist[1])
     rows = len(intlist)
