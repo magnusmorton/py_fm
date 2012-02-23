@@ -7,7 +7,11 @@ cdef class System:
         _system = fm.fm_system_alloc(numrows, numcols)
           
 cpdef System create_system(intlist):
-    cdef int cols, rows
+    cdef int cols, rows, i
+    cdef System system
     cols = len(intlist[1])
     rows = len(intlist)
-    return System(rows, cols)
+    system = System(rows, cols)
+    
+    
+    return system
