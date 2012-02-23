@@ -9,7 +9,7 @@ cdef class System:
 cpdef System create_system(intlist):
     cdef int cols, rows, i
     cdef System system
-    cols = len(intlist[1])
+    cols = len(intlist[0])
     rows = len(intlist)
     system = System(rows, cols)
     
