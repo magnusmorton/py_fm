@@ -36,5 +36,31 @@ cdef extern from '<fm/system.h>':
     extern s_fm_system_t* fm_system_alloc (size_t nb_lines, size_t nb_cols)
     extern void fm_system_free (s_fm_system_t* s)
     
+    
+cdef extern from '<fm/list.h>':
+    struct s_fm_list:
+        void* data
+        s_fm_list* next
+
+    ctypedef s_fm_list s_fm_list_t
+    ctypedef void (*free_fun_t) (void*)
+    ctypedef int (*cmp_fun_t) (void*, void*)
+    
+cdef extern from '<fm/solution.h>':
+    struct s_fm_ball:
+        s_fm_list_t* positive
+        s_fm_list_t* negative
+
+    ctypedef s_fm_ball s_fm_ball_t
+
+    struct s_fm_solution:
+        s_fm_ball_t* solution
+        unsigned size
+
+    ctypedef s_fm_solution s_fm_solution_t
+
+    ctypedef void (*point_fun_t)(s_fm_solution_t*, s_fm_vector_t*, int, void*)
+    
+    
         
     
