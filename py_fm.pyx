@@ -15,8 +15,13 @@ cdef class System:
                 self._system.lines[i].vector[j].num = intlist[i][j]
                 fm.fm_vector_compute_key(&(self._system.lines[i].key), self._system.lines[i])
                 
+    def __dealloc__(self):
+        fm.fm_system_free(self._system)
+                
     
     cpdef dump(self):
         if fm.fm_system_print(libc.stdio.stdout, self._system):
             raise IOError()
+            
+    
                 
