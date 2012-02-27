@@ -13,9 +13,11 @@ cdef extern from '<fm/rational.h>':
 cdef extern from '<fm/vector.h>':
     struct s_fm_vector:
         size_t size
-        s_fm_rational_t vector
+        s_fm_rational_t* vector
         z_type_t key
     ctypedef s_fm_vector s_fm_vector_t
+    
+    extern inline int fm_vector_assign_int_idx (s_fm_vector_t* v, z_type_t i, unsigned idx)
     
     
 cdef extern from '<fm/system.h>':
