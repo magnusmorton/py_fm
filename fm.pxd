@@ -31,7 +31,7 @@ cdef extern from '<fm/system.h>':
         unsigned allocated
 
     ctypedef s_fm_system s_fm_system_t
-    fm_system_print (libc.stdio.FILE* stream, s_fm_system_t* s)
+    extern int fm_system_print (libc.stdio.FILE* stream, s_fm_system_t* s)
 
     extern s_fm_system_t* fm_system_alloc (size_t nb_lines, size_t nb_cols)
     

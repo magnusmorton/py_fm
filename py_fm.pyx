@@ -17,5 +17,6 @@ cdef class System:
                 
     
     cpdef dump(self):
-        fm.fm_system_print(libc.stdio.stdout, self._system) 
+        if fm.fm_system_print(libc.stdio.stdout, self._system):
+            raise IOError()
                 
