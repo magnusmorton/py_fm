@@ -22,8 +22,9 @@ cdef class System:
     cpdef dump(self):
         if fm.fm_system_print(libc.stdio.stdout, self._system):
             raise IOError()
-            
+           
     cpdef Solution solve(self):
+        """WARNING: calling this on an insoluble system will cause a crash"""
         cdef fm.s_fm_solution_t *solution
         solution = fm.fm_solver(self._system, fm.FM_SOLVER_VERBOSE | fm.FM_SOLVER_FAST)
         wrapped_solution = Solution()
