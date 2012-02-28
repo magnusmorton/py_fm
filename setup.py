@@ -8,5 +8,5 @@ setup (name = 'PythonFourierMotzkin',
        cmdclass = {'build_ext':build_ext},
        ext_modules = [Extension("py_fm", ["py_fm.pyx", "fm.pxd"],
                         libraries=["fm"])],
-       test_suite = "tests.test_all"
+       test_suite = "tests"
        )
