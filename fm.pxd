@@ -61,6 +61,32 @@ cdef extern from '<fm/solution.h>':
 
     ctypedef void (*point_fun_t)(s_fm_solution_t*, s_fm_vector_t*, int, void*)
     
+    extern void fm_solution_print (libc.stdio.FILE* stream, s_fm_solution_t* s)
+    
+cdef extern from '<fm/solver.h>':
+    extern s_fm_solution_t* fm_solver (s_fm_system_t* system, int solver_type)
+
+    extern s_fm_solution_t* fm_solver_solution_at (s_fm_system_t* system, int solver_type, unsigned last)
+
+    extern s_fm_solution_t* fm_solver_solution_to (s_fm_system_t* system, int solver_type, unsigned to)
+    
+cdef extern from '<fm/options.h>':
+    cdef enum options:
+        FM_SOLVER_DEFAULT = 0
+        FM_SOLVER_FAST    = 1
+        FM_SOLVER_MEMSIZE = 2
+        FM_SOLVER_NORMALIZE_EQ = 4
+        FM_SOLVER_DEBUG = 8
+        FM_SOLVER_SIMPLIFY = 16
+        FM_SOLVER_REDREC_DESCENDANT	= 32
+        FM_SOLVER_REDREC_IRIGOIN	= 64
+        FM_SOLVER_AUTO_SIMPLIFY	    = 128
+
+        FM_SOLVER_VERBOSE		    =256
+
+        FM_SOLVER_AUTOSIMP_THRESOLD	 = 2000
+        FM_SOLVER_ERRPTR		= 0x1
+    
     
         
     
