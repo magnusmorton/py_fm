@@ -23,5 +23,20 @@ cdef class System:
         if fm.fm_system_print(libc.stdio.stdout, self._system):
             raise IOError()
             
+    cpdef Solution solve(self):
+        cdef fm.s_fm_solution_t *solution
+        solution = fm.fm_solver(self._system, fm.FM_SOLVER_VERBOSE | fm.FM_SOLVER_FAST)
+        wrapped_solution = Solution()
+        wrapped_solution.add_solution(solution)
+        return wrapped_solution
+            
     
                 
+cdef class Solution:
+    cdef fm.s_fm_solution_t *_solution
+    
+    def __cinit__(self):
+        pass
+        
+    cdef void add_solution(self, fm.s_fm_solution_t *solution):
+        self._solution = solution
