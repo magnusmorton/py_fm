@@ -20,6 +20,7 @@ cdef class System:
                 
     
     cpdef dump(self):
+        print("System:")
         if fm.fm_system_print(libc.stdio.stdout, self._system):
             raise IOError()
            
@@ -41,3 +42,7 @@ cdef class Solution:
         
     cdef void add_solution(self, fm.s_fm_solution_t *solution):
         self._solution = solution
+        
+    cpdef dump(self):
+        print("Solution:")
+        fm.fm_solution_print(libc.stdio.stdout, self._solution)
