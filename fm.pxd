@@ -1,4 +1,7 @@
 # cython: language_level=3
+'''Many of the declarations here are copied/derieved from the original header 
+files in the fm lib, these are (c) Louis-Noel Pouchet.
+Everything else is © Magnus Morton 2012'''
 
 cimport libc.stdio
 cdef extern from '<fm/common.h>':
