@@ -70,6 +70,8 @@ cdef extern from '<fm/solver.h>':
 
     extern s_fm_solution_t* fm_solver_solution_to (s_fm_system_t* system, int solver_type, unsigned to)
     
+    extern void fm_solution_free (s_fm_solution_t* s)
+    
 cdef extern from '<fm/options.h>':
     cdef enum options:
         FM_SOLVER_DEFAULT = 0
