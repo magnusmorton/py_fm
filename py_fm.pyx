@@ -46,6 +46,7 @@ cdef class System:
     
                 
 cdef class Solution:
+    """Wrapper on s_fm_solution struct"""
     cdef fm.s_fm_solution_t *_solution
     
     def __cinit__(self):
