@@ -23,6 +23,7 @@ class TestSystem(unittest.TestCase):
         self.system.dump()
         sol = self.system.solve()
         sol.dump()
+        sol.as_system()
         
     def test_to_list_book(self):
         assert self.system.to_list() == TestSystem.BOOK_EXAMPLE, "array not recovered"
