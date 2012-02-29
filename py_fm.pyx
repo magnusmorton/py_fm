@@ -36,13 +36,15 @@ cdef class System:
         cdef int i,j
         output_list = []
         for i in range(self._system.nb_lines):
-            vector = []
-            for j in range(self._system.nb_cols):
-                vector.append(self._system.lines[i].vector[j].num)
-            output_list.append(vector)
+            output_list.append(vector_to_list(self._system.lines[i], self._system.nb_cols))
         return output_list
         
-            
+ 
+cdef vector_to_list(fm.s_fm_vector_t *vector, int size):
+    output_vector = []
+    for j in range(size):
+        output_vector.append(vector.vector[j].num)
+    return output_vector
     
                 
 cdef class Solution:
@@ -58,6 +60,15 @@ cdef class Solution:
         
     cdef void add_solution(self, fm.s_fm_solution_t *solution):
         self._solution = solution
+        
+    cpdef as_system(self):
+        cdef fm.s_fm_system_t *system
+        system = fm.fm_solution_to_system(self._solution)
+        print("Solution as System:")
+        if fm.fm_system_print(libc.stdio.stdout, system):
+            raise IOError()
+            
+        
         
     cpdef dump(self):
         print("Solution:")
