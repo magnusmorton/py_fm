@@ -33,13 +33,16 @@ cdef class System:
         return wrapped_solution
         
     def to_list(self):
-        cdef int i,j
-        output_list = []
-        for i in range(self._system.nb_lines):
-            output_list.append(vector_to_list(self._system.lines[i], self._system.nb_cols))
-        return output_list
+        return system_to_list(self._system)
         
- 
+
+cdef system_to_list(fm.s_fm_system_t *system):
+    cdef int i
+    output_list = []
+    for i in range(system.nb_lines):
+        output_list.append(vector_to_list(system.lines[i], system.nb_cols))
+    return output_list
+
 cdef vector_to_list(fm.s_fm_vector_t *vector, int size):
     output_vector = []
     for j in range(size):
@@ -67,7 +70,13 @@ cdef class Solution:
         print("Solution as System:")
         if fm.fm_system_print(libc.stdio.stdout, system):
             raise IOError()
-            
+        
+    def to_list(self):
+        cdef fm.s_fm_system_t *system
+        cdef int i
+        system = fm.fm_solution_to_system(self._solution)
+        return system_to_list(system)
+        
         
         
     cpdef dump(self):
