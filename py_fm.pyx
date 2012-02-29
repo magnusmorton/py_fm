@@ -77,8 +77,6 @@ cdef class Solution:
         system = fm.fm_solution_to_system(self._solution)
         return system_to_list(system)
         
-        
-        
     cpdef dump(self):
         print("Solution:")
         fm.fm_solution_print(libc.stdio.stdout, self._solution)
