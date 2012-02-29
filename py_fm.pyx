@@ -31,6 +31,17 @@ cdef class System:
         wrapped_solution = Solution()
         wrapped_solution.add_solution(solution)
         return wrapped_solution
+        
+    def to_list(self):
+        cdef int i,j
+        output_list = []
+        for i in range(self._system.nb_lines):
+            vector = []
+            for j in range(self._system.nb_cols):
+                vector.append(self._system.lines[i].vector[j].num)
+            output_list.append(vector)
+        return output_list
+        
             
     
                 
