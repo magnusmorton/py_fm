@@ -39,6 +39,10 @@ cdef class Solution:
     
     def __cinit__(self):
         pass
+    
+    def __dealloc__(self):
+        if self._solution is not NULL:
+            fm.fm_solution_free(self._solution)
         
     cdef void add_solution(self, fm.s_fm_solution_t *solution):
         self._solution = solution
