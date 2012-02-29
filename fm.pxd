@@ -69,6 +69,7 @@ cdef extern from '<fm/solver.h>':
     extern s_fm_solution_t* fm_solver_solution_at (s_fm_system_t* system, int solver_type, unsigned last)
 
     extern s_fm_solution_t* fm_solver_solution_to (s_fm_system_t* system, int solver_type, unsigned to)
+    extern s_fm_system_t* fm_solution_to_system (s_fm_solution_t* s)
     
     extern void fm_solution_free (s_fm_solution_t* s)
     
